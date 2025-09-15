@@ -4,9 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:toastification/toastification.dart';
 
-import '../app_theme.dart';
-
-
 class LogHandler {
   final talker = Talker();
   
@@ -40,9 +37,6 @@ class LogHandler {
 
     return e.toString();
   }
-
-
-
 
   _handleLongMessage(dynamic longMessage) {
     if (longMessage is String) {
