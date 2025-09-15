@@ -1,6 +1,6 @@
 name: jlt_app_log_handler
 description: "A package to manage logging throughout the JLT software suite."
-version: 0.0.1
+version: 0.0.2
 homepage:
 
 environment:
@@ -11,14 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  talker_flutter: ^4.7.9
+  talker_flutter: ^5.0.0
   toastification: ^3.0.2
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
