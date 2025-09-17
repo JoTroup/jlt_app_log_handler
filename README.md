@@ -1,39 +1,92 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# jlt_app_log_handler
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A simple, extensible logging and notification handler for Flutter apps. This package provides unified logging methods (success, info, debug, error) and toast notifications, built on top of [talker_flutter](https://pub.dev/packages/talker_flutter) and [toastification](https://pub.dev/packages/toastification).
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Unified logging interface: success, info, debug, error
+- Optional toast notifications for log events
+- Pretty-printing for long messages (Map/List)
+- Customizable log IDs and separators
+- Stack trace logging for errors
+- Easy integration with Flutter
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add the package to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  jlt_app_log_handler:
+    git:
+      url: https://github.com/yourusername/jlt_app_log_handler.git
+```
+
+Or from pub.dev (when published):
+
+```yaml
+dependencies:
+  jlt_app_log_handler: ^<latest_version>
+```
+
+Run `flutter pub get` to install dependencies.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Import and use the `LogHandler` class in your Flutter app:
 
 ```dart
-const like = 'sample';
+import 'package:jlt_app_log_handler/jlt_app_log_handler.dart';
+
+final logHandler = LogHandler();
+
+// Success log with toast
+logHandler.success(message: 'Operation completed!', showToast: true);
+
+// Info log
+logHandler.info(message: 'Fetching data...');
+
+// Debug log (only in debug mode)
+logHandler.debug(message: 'Debugging value', longMessage: {'key': 'value'});
+
+// Error log with stack trace and toast
+try {
+  throw Exception('Something went wrong');
+} catch (e, st) {
+  logHandler.error(e: e, stackTrace: st, showToast: true);
+}
 ```
 
-## Additional information
+## API Reference
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+See [lib/src/log_handler.dart](lib/src/log_handler.dart) for full API details.
+
+### LogHandler Methods
+- `success({required String message, ...})`
+- `info({required String message, ...})`
+- `debug({required String message, ...})`
+- `error({required e, StackTrace? stackTrace, ...})`
+
+All methods support optional toast notifications and long messages.
+
+## Example
+
+See the `/example` folder for a complete Flutter app using this package.
+
+## Contributing
+
+Contributions are welcome! Please open issues or submit pull requests on [GitHub](https://github.com/yourusername/jlt_app_log_handler).
+
+## Issues
+
+Report issues via the [GitHub Issues](https://github.com/yourusername/jlt_app_log_handler/issues) page.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Additional Information
+
+- [talker_flutter documentation](https://pub.dev/packages/talker_flutter)
+- [toastification documentation](https://pub.dev/packages/toastification)
+- For questions, contact the package author via GitHub.
