@@ -1,10 +1,10 @@
 name: jlt_app_log_handler
 description: "A package to manage logging throughout the JLT software suite."
-version: 0.0.2
+version: 0.0.3
 homepage:
 
 environment:
-  sdk: ^3.9.0
+  sdk: any
   flutter: ">=1.17.0"
 
 dependencies:
