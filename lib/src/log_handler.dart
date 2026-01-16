@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:talker/talker.dart';
+import 'package:talker_flutter/talker_flutter.dart';
 import 'package:toastification/toastification.dart';
 
 import '../jlt_app_log_handler.dart';
@@ -42,7 +43,8 @@ class LogHandler {
   factory LogHandler() => _instance;
   static LogHandler get instance => _instance;
 
-  final talker = Talker();
+
+  final talker = TalkerFlutter.init();
 
   String scID = "fltt_el_";
   String scIDSeparator = "|";
