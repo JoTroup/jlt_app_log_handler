@@ -34,8 +34,16 @@ class Success extends TalkerLog {
 }
 
 class LogHandler {
+  LogHandler._internal();
+
+  static final LogHandler _instance = LogHandler._internal();
+
+  /// Use `LogHandler()` or `LogHandler.instance` to get the singleton.
+  factory LogHandler() => _instance;
+  static LogHandler get instance => _instance;
+
   final talker = Talker();
-  
+
   String scID = "fltt_el_";
   String scIDSeparator = "|";
 
@@ -60,14 +68,14 @@ class LogHandler {
     return message;
   }
 
-  error({required e, StackTrace? stackTrace, dynamic longMessage, String? callingFunctionLogID, bool showToast = true}) {
+  String error({required e, StackTrace? stackTrace, dynamic longMessage, String? callingFunctionLogID, bool showToast = true}) {
     showToast ? toast(type: ToastificationType.error, title: e.toString()) : {};
     talker.error("${callingFunctionLogID != null? "$callingFunctionLogID $scIDSeparator " : ""}$e${longMessage != null? "\n\nlongMessage: ${_handleLongMessage(longMessage)}" : ""}\n\nStackTrace: $stackTrace");
 
     return e.toString();
   }
 
-  _handleLongMessage(dynamic longMessage) {
+  String _handleLongMessage(dynamic longMessage) {
     if (longMessage is String) {
       return longMessage;
     } else if (longMessage is Map || longMessage is List) {
@@ -84,7 +92,7 @@ class LogHandler {
     return encoder.convert(json);
   }
 
-  toast({required ToastificationType type, required String title, String? description, Duration? durationOverride, bool? neverExpires}) {
+  void toast({required ToastificationType type, required String title, String? description, Duration? durationOverride, bool? neverExpires}) {
     Toastification().show(type: type, title: Text(title), description: description != null ? Text(description) : null, autoCloseDuration: neverExpires == null ? durationOverride ?? Duration(seconds: 3) : null );
   }
 }
