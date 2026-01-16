@@ -11,13 +11,13 @@ class Success extends TalkerLog {
 
 
   /// Log title
-  static get getTitle => 'SUCCESS';
+  static String get getTitle => 'SUCCESS';
 
   /// Log key
-  static get getKey => 'success_log_key';
+  static String get getKey => 'success_log_key';
 
   /// Log color
-  static get getPen => AnsiPen()..green();
+  static AnsiPen get getPen => AnsiPen()..green();
 
   /// The following overrides are required because the base class expects instance getters,
   /// but we use static getters to allow for easy customization and reuse of colors, titles, and keys.
