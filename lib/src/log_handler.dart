@@ -4,15 +4,44 @@ import 'package:flutter/foundation.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:toastification/toastification.dart';
 
+import '../jlt_app_log_handler.dart';
+
+class Success extends TalkerLog {
+  Success(super.message);
+
+
+  /// Log title
+  static get getTitle => 'SUCCESS';
+
+  /// Log key
+  static get getKey => 'success_log_key';
+
+  /// Log color
+  static get getPen => AnsiPen()..green();
+
+  /// The following overrides are required because the base class expects instance getters,
+  /// but we use static getters to allow for easy customization and reuse of colors, titles, and keys.
+  /// This approach works around limitations in the base class API, which does not support passing custom values
+  /// directly to the constructor or as parameters, so we override the instance getters to return the static values.
+  @override
+  String get title => getTitle;
+
+  @override
+  String get key => getKey;
+
+  @override
+  AnsiPen get pen => getPen;
+}
+
 class LogHandler {
   final talker = Talker();
   
   String scID = "fltt_el_";
   String scIDSeparator = "|";
 
-  success({required String message, dynamic longMessage, String? callingFunctionLogID, bool showToast = false}) {
+  String success({required String message, dynamic longMessage, String? callingFunctionLogID, bool showToast = false}) {
     showToast ? toast(type: ToastificationType.success, title: message) : {};
-    talker.info("${callingFunctionLogID != null? "$callingFunctionLogID $scIDSeparator " : ""}${message.toString()}${longMessage != null? "\n\nlongMessage: ${_handleLongMessage(longMessage)}" : ""}");
+    talker.logCustom(Success("${callingFunctionLogID != null? "$callingFunctionLogID $scIDSeparator " : ""}${message.toString()}${longMessage != null? "\n\nlongMessage: ${_handleLongMessage(longMessage)}" : ""}"));
 
     return message;
   }
