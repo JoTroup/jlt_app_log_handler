@@ -12,10 +12,10 @@ class Success extends TalkerLog {
 
 
   /// Log title
-  static String get getTitle => 'SUCCESS';
+  static String get getTitle => 'success';
 
   /// Log key
-  static String get getKey => 'success_log_key';
+  static String get getKey => 'success';
 
   /// Log color
   static AnsiPen get getPen => AnsiPen()..green();
