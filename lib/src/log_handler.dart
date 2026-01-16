@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:talker_flutter/talker_flutter.dart';
+import 'package:talker/talker.dart';
 import 'package:toastification/toastification.dart';
 
 import '../jlt_app_log_handler.dart';

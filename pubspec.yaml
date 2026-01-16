@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  talker_flutter: ^5.0.0
+  talker: ^5.1.11
   toastification: ^3.0.2
 
 
